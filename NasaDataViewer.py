@@ -6,6 +6,8 @@ import folium
 from streamlit_folium import st_folium
 from datetime import date, timedelta
 from datetime import datetime
+from dotenv import load_dotenv
+load_dotenv() 
 
 st.set_page_config(initial_sidebar_state="expanded")
 

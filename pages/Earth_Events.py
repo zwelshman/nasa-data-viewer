@@ -4,6 +4,9 @@ import pandas as pd
 import folium
 from streamlit_folium import st_folium
 
+from dotenv import load_dotenv
+load_dotenv() 
+
 import os
 API_KEY = os.environ['NASA_API_KEY']
 

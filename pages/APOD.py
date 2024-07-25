@@ -1,6 +1,8 @@
 import streamlit as st
 import requests
 import os
+from dotenv import load_dotenv
+load_dotenv() 
 
 api_key = os.environ['NASA_API_KEY']
 
@@ -16,13 +18,5 @@ st.title("Astronomy Picture of the Day")
 
 apod_data = fetch_apod(api_key)
 import pprint 
-
-st.write((apod_data))
-
-col1, col2 = st.columns([3, 2])
-
-with col1:
-    st.image(apod_data['hdurl'], caption=apod_data['title'], use_column_width=True)
-
-with col2:
-    st.write(apod_data['explanation'])
+st.image(apod_data['hdurl'], caption=apod_data['title'], use_column_width=True)
+st.write(apod_data['explanation'])

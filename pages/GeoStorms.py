@@ -3,6 +3,9 @@ import requests
 from datetime import datetime, timedelta
 
 import os
+from dotenv import load_dotenv
+load_dotenv() 
+
 API_KEY = os.environ['NASA_API_KEY']
 
 st.title("NASA DONKI Geomagnetic Storm (GST) Viewer with Storm Magnitude")

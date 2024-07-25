@@ -2,6 +2,8 @@ import streamlit as st
 import requests
 import matplotlib.pyplot as plt
 from datetime import date, timedelta
+from dotenv import load_dotenv
+load_dotenv() 
 
 import os
 API_KEY = os.environ['NASA_API_KEY']
