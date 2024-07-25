@@ -49,15 +49,15 @@ st.write("Welcome to the NASA Data Viewer app. This application provides access 
 col1, col2, col3 = st.columns(3)
 
 with col1:
-    st.page_link("pages/APOD.py", label="APOD", icon="🌠")
-    st.page_link("pages/NEO.py", label="NEO", icon="☄️")
+    st.page_link("pages/APOD.py", label="Astronomoy Photo of the Day", icon="🌠")
+    st.page_link("pages/NEO.py", label="Near Earth Objects", icon="☄️")
 
 with col2:
     st.page_link("pages/Mars_Rover_Photos.py", label="Mars Rover", icon="🔴")
-    st.page_link("pages/Earth_Events.py", label="Earth Events", icon="🌍")
+    st.page_link("pages/Earth_Events.py", label="Earth Natural Disaster Events", icon="🌍")
 
 with col3:
-    st.page_link("pages/GeoStorms.py", label="GeoStorms", icon="⚡")
+    st.page_link("pages/GeoStorms.py", label="Geomagnetic torms", icon="⚡")
 
 st.markdown("## Available Data")
 
