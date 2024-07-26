@@ -5,3 +5,4 @@ streamlit_folium
 pandas
 matplotlib
 python-dotenv
+geopy
