@@ -63,19 +63,25 @@ selected_categories = st.multiselect("Select categories to display:", category_t
 
 df = load_and_process_data(API_KEY, selected_categories)
 
-col1, col2 = st.columns([3, 1])
+
+
+m = folium.Map(location=[30, 10], zoom_start=1)
+for _, row in df.iterrows():
+    folium.Marker(
+        location=[row['coordinates'][1], row['coordinates'][0]],
+        popup=f"{row['title']} ({row['date'].strftime('%Y-%m-%d')})",
+        tooltip=row['category'],
+        icon=folium.Icon(color=category_colors.get(row['category'], "blue"))
+    ).add_to(m)
+st_folium(m, width=700, height=300)
+
+col1, col2 = st.columns([1,1])
+with col2:
+    st.write("### Category Colors")
+    for category, color in category_colors.items():
+        st.markdown(f"<span style='color:{color}; font-size: 12px;'>⬤</span> <span style='font-size: 12px;'>{category}</span>", unsafe_allow_html=True)
 
 with col1:
-    m = folium.Map(location=[30, 10], zoom_start=1)
-    for _, row in df.iterrows():
-        folium.Marker(
-            location=[row['coordinates'][1], row['coordinates'][0]],
-            popup=f"{row['title']} ({row['date'].strftime('%Y-%m-%d')})",
-            tooltip=row['category'],
-            icon=folium.Icon(color=category_colors.get(row['category'], "blue"))
-        ).add_to(m)
-    st_folium(m, width=700, height=300)
-
     st.write("### Recent Earth Events")
     for _, row in df.iterrows():
         with st.expander(f"**{row['title']}** - {row['date'].strftime('%Y-%m-%d')}"):
@@ -83,9 +89,4 @@ with col1:
             lon, lat = row['coordinates']
             st.write(f"Location: {coordinates_to_location(lat, lon)}")
 
-with col2:
-    st.write("### Category Colors")
-    for category, color in category_colors.items():
-        st.markdown(f"<span style='color:{color}; font-size: 12px;'>⬤</span> <span style='font-size: 12px;'>{category}</span>", unsafe_allow_html=True)
-
-st.write(f"Total events displayed: {len(df)}")
+    st.write(f"Total events displayed: {len(df)}")
